@@ -4,7 +4,7 @@ on: [push]
 
 permissions:
   contents: read
-  issues: write          # lets ZAP open/update the report issue
+  issues: write
 
 jobs:
   zap_scan:
@@ -16,4 +16,13 @@ jobs:
         uses: zaproxy/action-baseline@v0.10.0
         with:
           target: 'http://bwapp.hakhub.net'
-          docker_options: '--user 0'      # ← run as root, no YAML-copy warning
+          docker_options: '--user 0'   # removes the YAML warning
+
+      - name: Upload ZAP reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap_scan               
+          path: |
+            report_html.html
+            report_md.md
+            report_json.json
