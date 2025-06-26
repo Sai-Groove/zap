@@ -4,16 +4,16 @@ on: [push]
 
 permissions:
   contents: read
-  issues: write
+  issues: write          # lets ZAP open/update the report issue
 
 jobs:
   zap_scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.10.0
         with:
           target: 'http://bwapp.hakhub.net'
+          docker_options: '--user 0'      # ← run as root, no YAML-copy warning
