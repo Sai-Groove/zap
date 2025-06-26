@@ -16,7 +16,7 @@ jobs:
         uses: zaproxy/action-baseline@v0.10.0
         with:
           target: 'http://bwapp.hakhub.net'
-          docker_options: '--user 0'   # removes the YAML warning
+          docker_options: '--user 0'   
 
       - name: Upload ZAP reports
         uses: actions/upload-artifact@v4
