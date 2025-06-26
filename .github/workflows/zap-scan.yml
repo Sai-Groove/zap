@@ -1,4 +1,4 @@
-name: ZAP Scan
+name: ZAP-Scan
 on: [push]
 
 permissions:
